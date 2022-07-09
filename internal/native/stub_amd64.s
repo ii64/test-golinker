@@ -412,28 +412,14 @@ _lbl_4da:
 TEXT ·subr(SB), NOSPLIT | NOFRAME, $0 - 8
 	NO_LOCAL_POINTERS
 
-_entry:
-	MOVQ (TLS), R14
-	LEAQ 0(SP), R12
-	JBE _more_stack
-
 _subr:
 	CALL ·__native_entry__+16(SB)
 	MOVQ AX, ret+0(FP)
 	RET
 
-_more_stack:
-	CALL runtime·morestack_noctxt<>(SB)
-	JMP _entry
-
 
 TEXT ·subr2(SB), NOSPLIT | NOFRAME, $0 - 16
 	NO_LOCAL_POINTERS
-
-_entry:
-	MOVQ (TLS), R14
-	LEAQ 0(SP), R12
-	JBE _more_stack
 
 _subr2:
 	MOVQ b+0(FP), DI
@@ -441,18 +427,9 @@ _subr2:
 	MOVQ AX, ret+8(FP)
 	RET
 
-_more_stack:
-	CALL runtime·morestack_noctxt<>(SB)
-	JMP _entry
-
 
 TEXT ·subr3(SB), NOSPLIT | NOFRAME, $0 - 16
 	NO_LOCAL_POINTERS
-
-_entry:
-	MOVQ (TLS), R14
-	LEAQ 0(SP), R12
-	JBE _more_stack
 
 _subr3:
 	MOVQ b+0(FP), DI
@@ -460,18 +437,9 @@ _subr3:
 	MOVQ AX, ret+8(FP)
 	RET
 
-_more_stack:
-	CALL runtime·morestack_noctxt<>(SB)
-	JMP _entry
-
 
 TEXT ·subrSimd(SB), NOSPLIT | NOFRAME, $0 - 13
 	NO_LOCAL_POINTERS
-
-_entry:
-	MOVQ (TLS), R14
-	LEAQ 0(SP), R12
-	JBE _more_stack
 
 _subrSimd:
 	MOVQ b+0(FP), DI
@@ -479,10 +447,6 @@ _subrSimd:
 	CALL ·__native_entry__+208(SB)
 	MOVL AX, ret+9(FP)
 	RET
-
-_more_stack:
-	CALL runtime·morestack_noctxt<>(SB)
-	JMP _entry
 
 
 
